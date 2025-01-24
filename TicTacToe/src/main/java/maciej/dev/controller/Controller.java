@@ -15,8 +15,10 @@ public class Controller {
 
     public void start() {
         view.initialDisplay();
+        view.displayWhiteBoard();
         while (model.play()) {
             try {
+                view.displayPlayer(model.getCurrentPlayer().getOption());
                 model.makeMove(view.askForPosition(model.getSIZE()));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

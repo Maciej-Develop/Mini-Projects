@@ -16,6 +16,18 @@ public class View implements Observer {
         System.out.println("Hello in TicTacToe");
     }
 
+    public void displayWhiteBoard() {
+        System.out.println("|   |   |   |\n" +
+                "-------------\n" +
+                "|   |   |   |\n" +
+                "-------------\n" +
+                "|   |   |   |");
+    }
+
+    public void displayPlayer(Option option) {
+        System.out.println("It's " + option.toString() + " player's turn");
+    }
+
     public Position askForPosition(int limit) {
         int x = askForInteger("Please enter a x position : ", limit);
         int y = askForInteger("Please enter a y position : ", limit);

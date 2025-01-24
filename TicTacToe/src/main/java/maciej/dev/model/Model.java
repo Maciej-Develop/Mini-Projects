@@ -27,6 +27,10 @@ public class Model extends Observable {
         return play;
     }
 
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
     public void makeMove(Position position) {
         board.makeMove(currentPlayer.getOption(), position);
         if (currentPlayer == playerX) {
