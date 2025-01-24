@@ -7,4 +7,8 @@ public class Player {
     public Player(Option option){
         this.option = option;
     }
+
+    public Option getOption() {
+        return option;
+    }
 }

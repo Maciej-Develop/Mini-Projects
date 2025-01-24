@@ -14,6 +14,13 @@ public class Controller {
     }
 
     public void start() {
-
+        view.initialDisplay();
+        while (model.play()) {
+            try {
+                model.makeMove(view.askForPosition(model.getSIZE()));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
