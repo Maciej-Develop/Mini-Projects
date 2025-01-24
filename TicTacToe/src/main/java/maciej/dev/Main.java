@@ -12,5 +12,7 @@ public class Main {
         Controller controller = new Controller(model,view);
 
         model.addObserver(view);
+
+        controller.start();
     }
 }
