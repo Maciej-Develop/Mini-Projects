@@ -1,4 +1,4 @@
-package dp;
+package maciej.dev.dp;
 
 /**
  * A class can implement the {@code Observer} interface when it wants to be
