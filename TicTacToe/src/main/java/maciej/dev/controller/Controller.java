@@ -20,6 +20,13 @@ public class Controller {
             try {
                 view.displayPlayer(model.getCurrentPlayer().getOption());
                 model.makeMove(view.askForPosition(model.getSIZE()));
+                if (!model.play()) {
+                    view.displayWinner(model.getCurrentPlayer().getOption());
+                    if (view.askAgain()){
+                        model.restart();
+                        view.displayWhiteBoard();
+                    }
+                }
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

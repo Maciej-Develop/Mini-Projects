@@ -32,13 +32,21 @@ public class Model extends Observable {
     }
 
     public void makeMove(Position position) {
-        board.makeMove(currentPlayer.getOption(), position);
-        if (currentPlayer == playerX) {
-            currentPlayer = playerO;
-        } else {
-            currentPlayer = playerX;
+        play = !board.makeMove(currentPlayer.getOption(), position);
+        if (play) {
+            if (currentPlayer == playerX) {
+                currentPlayer = playerO;
+            } else {
+                currentPlayer = playerX;
+            }
         }
         notifyObservers(new Board(board));
+    }
+
+    public void restart() {
+        this.board = new Board(SIZE);
+        this.play = true;
+        this.currentPlayer = playerX;
     }
 
 }

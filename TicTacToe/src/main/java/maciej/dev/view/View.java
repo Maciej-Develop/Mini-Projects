@@ -6,6 +6,8 @@ import maciej.dev.model.Board;
 import maciej.dev.model.Option;
 import maciej.dev.model.Position;
 
+import javax.sound.midi.Soundbank;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class View implements Observer {
@@ -28,6 +30,10 @@ public class View implements Observer {
         System.out.println("It's " + option.toString() + " player's turn");
     }
 
+    public void displayWinner(Option option) {
+        System.out.println("The player " + option.toString() + " won");
+    }
+
     public Position askForPosition(int limit) {
         int x = askForInteger("Please enter a x position : ", limit);
         int y = askForInteger("Please enter a y position : ", limit);
@@ -42,6 +48,16 @@ public class View implements Observer {
             x = Integer.parseInt(scanner.nextLine());
         }
         return x - 1;
+    }
+
+    public boolean askAgain() {
+        System.out.println("Do you want to play again ? Respond by y (yes) or n (no)");
+        String s = scanner.nextLine();
+        while (!Objects.equals(s, "y") && !Objects.equals(s, "n")) {
+            System.out.println("Enter y or n");
+            s = scanner.nextLine();
+        }
+        return Objects.equals(s, "y");
     }
 
     @Override

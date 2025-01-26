@@ -1,8 +1,11 @@
 package maciej.dev.model;
 
+import java.util.Collection;
+import java.util.List;
+
 public class Board {
 
-    private int size;
+    private final int size;
     private final Option[][] board;
 
     public Board(int size) {
@@ -20,7 +23,7 @@ public class Board {
         }
     }
 
-    public void makeMove(Option option, Position position) {
+    public boolean makeMove(Option option, Position position) {
         if (!contains(position)) {
             throw new IllegalArgumentException("Non-existent position");
         } else if (this.board[position.getX()][position.getY()] != null) {
@@ -28,10 +31,11 @@ public class Board {
         } else {
             this.board[position.getX()][position.getY()] = option;
         }
+        return checkWin(option, position);
     }
 
     private boolean contains(Position position) {
-        return position.getX() < this.size && (position.getX() >= 0 || position.getY() < this.size) && position.getY() >= 0;
+        return (position.getX() < this.size && position.getX() >= 0) && (position.getY() < this.size && position.getY() >= 0);
     }
 
     public Option getOption(Position position) {
@@ -40,5 +44,31 @@ public class Board {
 
     public int getSize() {
         return size;
+    }
+
+    private boolean checkWin(Option option, Position position) {
+        int cpt = 1;
+        for (Direction dir : List.of(Direction.N, Direction.NW, Direction.NE, Direction.E)) {
+            cpt += checkDirection(option, position, dir);
+            cpt += checkDirection(option, position, dir.getOpposite());
+            if (cpt == 3) {
+                return true;
+            }
+            cpt = 1;
+        }
+        return false;
+    }
+
+    private int checkDirection(Option option, Position position, Direction direction) {
+        int cpt = 0;
+        for (int i = 1; i < 3; i++) {
+            Position pos = new Position(position.getX() + (i * direction.getX()), position.getY() + (i * direction.getY()));
+            if (this.contains(pos) && this.getOption(pos) == option) {
+                cpt++;
+            } else {
+                break;
+            }
+        }
+        return cpt;
     }
 }
