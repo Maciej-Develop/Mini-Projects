@@ -1,6 +1,5 @@
 package maciej.dev.model;
 
-import java.util.Collection;
 import java.util.List;
 
 public class Board {
@@ -44,6 +43,17 @@ public class Board {
 
     public int getSize() {
         return size;
+    }
+
+    public boolean isFull() {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (this.getOption(new Position(i, j)) == null) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private boolean checkWin(Option option, Position position) {

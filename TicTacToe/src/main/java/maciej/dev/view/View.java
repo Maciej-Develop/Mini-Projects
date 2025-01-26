@@ -34,6 +34,10 @@ public class View implements Observer {
         System.out.println("The player " + option.toString() + " won");
     }
 
+    public void displayNoWinner() {
+        System.out.println("Nobody's won");
+    }
+
     public Position askForPosition(int limit) {
         int x = askForInteger("Please enter a x position : ", limit);
         int y = askForInteger("Please enter a y position : ", limit);

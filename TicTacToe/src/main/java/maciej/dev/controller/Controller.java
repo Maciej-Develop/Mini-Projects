@@ -16,20 +16,27 @@ public class Controller {
     public void start() {
         view.initialDisplay();
         view.displayWhiteBoard();
-        while (model.play()) {
+        while (!model.win() && model.play()) {
             try {
                 view.displayPlayer(model.getCurrentPlayer().getOption());
                 model.makeMove(view.askForPosition(model.getSIZE()));
-                if (!model.play()) {
+                if (model.win()) {
                     view.displayWinner(model.getCurrentPlayer().getOption());
-                    if (view.askAgain()){
-                        model.restart();
-                        view.displayWhiteBoard();
-                    }
+                    again();
+                } else if (!model.play()) {
+                    view.displayNoWinner();
+                    again();
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private void again() {
+        if (view.askAgain()) {
+            model.restart();
+            view.displayWhiteBoard();
         }
     }
 }
