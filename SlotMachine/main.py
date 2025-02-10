@@ -1,16 +1,23 @@
 import random
 
+
 def welcome_display():
     print("\nWelcome to SlotMachine")
     print("Symbols: 🍒 🍉 🍋 🔔 ⭐")
 
+
 def result_display(result):
     print(' | '.join(result))
 
+def goodbye_display(money):
+    print("\nThank you for playing!")
+    print(f"You have won ${money}.")
+
+
 def get_result():
     possibilities = ["🍒", "🍉", "🍋", "🔔", "⭐"]
-
     return [random.choice(possibilities) for i in range(3)]
+
 
 def get_payout(result, bet):
     switch = {
@@ -24,6 +31,7 @@ def get_payout(result, bet):
         return bet * switch.get(result[0])
     else:
         return 0
+
 
 def main():
     money = 100
@@ -50,7 +58,7 @@ def main():
         result = get_result()
         result_display(result)
 
-        payout = get_payout(result,bet)
+        payout = get_payout(result, bet)
         if payout == 0:
             if money == 0:
                 print("You lost all your money.")
@@ -61,6 +69,17 @@ def main():
 
         money += payout
 
+        if money > 0:
+            play_again = input("Would you like to play again (y/n) ? : ")
+
+            while play_again not in ["y", "n"]:
+                print("Enter either 'y' or 'n'")
+                play_again = input("Do you want to play again (y/n) ? : ")
+
+            if play_again == "n":
+                break
+
+    goodbye_display(money)
 
 if __name__ == "__main__":
     main()
