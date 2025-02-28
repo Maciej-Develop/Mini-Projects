@@ -12,6 +12,27 @@ Currently, the languages used here are Java and Python.
 
 # TicTacToe
 
+A simple implementation of the Tic Tac Toe game. Two players can play it.
+
+## How to use
+
+### **Prerequisites**
+
+- Ensure you **Java and Maven installed** (tested on Java 19 with Maven 3.9.9)
+- Clone this repository and navigate to the `TicTacToe` folder.
+
+1. Compile the project with maven : 
+
+```
+mvn compile
+```
+
+2. Run the project with maven : 
+
+```
+mvn exec:java
+```
+
 # SlotMachine
 
 Two simple implementations of a slot machine. 
