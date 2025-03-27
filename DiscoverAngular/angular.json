@@ -6,10 +6,7 @@
     "DiscoverAngular": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "inlineTemplate": true,
-          "inlineStyle": true
-        }
+        "@schematics/angular:component": {}
       },
       "root": "",
       "sourceRoot": "src",
@@ -97,5 +94,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
